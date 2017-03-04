@@ -42,7 +42,7 @@
 	    	if (m.message.requestId) {
 	    		let mithrilCdnLatency = 0;
 	    		let pubnubCdnLatency = 0;
-	    		if (window.performance) {
+	    		if (window.performance.getEntriesByName) {
 	    			mithrilCdnLatency = window.performance.getEntriesByName("https://unpkg.com/mithril@1.0.1/mithril.js")[0].duration || 0;
 	    			pubnubCdnLatency = window.performance.getEntriesByName("https://cdn.pubnub.com/sdk/javascript/pubnub.4.4.2.js")[0].duration || 0; 
 	    		}
