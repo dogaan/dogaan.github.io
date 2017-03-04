@@ -40,8 +40,12 @@
 	    message: function(m) {
 	    	console.log("Dispatching message: " + JSON.stringify(m));
 	    	if (m.message.requestId) {
-	    		let mithrilCdnLatency = window.performance.getEntriesByName("https://unpkg.com/mithril@1.0.1/mithril.js")[0].duration || 0;
-	    		let pubnubCdnLatency = window.performance.getEntriesByName("https://cdn.pubnub.com/sdk/javascript/pubnub.4.4.2.js")[0].duration || 0;
+	    		let mithrilCdnLatency = 0;
+	    		let pubnubCdnLatency = 0;
+	    		if (window.performance) {
+	    			mithrilCdnLatency = window.performance.getEntriesByName("https://unpkg.com/mithril@1.0.1/mithril.js")[0].duration || 0;
+	    			pubnubCdnLatency = window.performance.getEntriesByName("https://cdn.pubnub.com/sdk/javascript/pubnub.4.4.2.js")[0].duration || 0; 
+	    		}
 	    		let latency =  window.performance.now() - latencies['1'];
 	    		pubnub.publish({ 
 	    			message:{ 
