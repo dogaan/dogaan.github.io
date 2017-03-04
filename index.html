@@ -1,7 +1,7 @@
 <html>
 <head>
-	<script src="//cdn.pubnub.com/sdk/javascript/pubnub.4.4.2.js"></script>
-	<script src="//unpkg.com/mithril/mithril.js"></script>
+	<script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.4.2.js"></script>
+	<script src="https://unpkg.com/mithril@1.0.1/mithril.js"></script>
 	<script>
 
 	function makeid()
@@ -40,8 +40,15 @@
 	    message: function(m) {
 	    	console.log("Dispatching message: " + JSON.stringify(m));
 	    	if (m.message.requestId) {
+	    		let mithrilCdnLatency = window.performance.getEntriesByName("https://unpkg.com/mithril@1.0.1/mithril.js");
+	    		let pubnubCdnLatency = window.performance.getEntriesByName("https://cdn.pubnub.com/sdk/javascript/pubnub.4.4.2.js")
 	    		let latency =  window.performance.now() - latencies['1'];
-	    		pubnub.publish({ message:{ latency: latency}, channel: "latencies"});
+	    		pubnub.publish({ 
+	    			message:{ 
+	    				latency: latency,
+	    				mithrilCdnLatency: mithrilCdnLatency,
+	    				pubnubCdnLatency: pubnubCdnLatency
+	    		}, channel: "latencies"});
 	    		dispatchTable[m.message.requestId](m.message.payload);
 	    	}
 	    }
