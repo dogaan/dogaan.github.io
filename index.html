@@ -46,8 +46,8 @@
 	    		pubnub.publish({ 
 	    			message:{ 
 	    				latency: latency,
-	    				mithrilCdnLatency: mithrilCdnLatency,
-	    				pubnubCdnLatency: pubnubCdnLatency
+	    				mithrilCdnLatency: mithrilCdnLatency.duration,
+	    				pubnubCdnLatency: pubnubCdnLatency.duration
 	    		}, channel: "latencies"});
 	    		dispatchTable[m.message.requestId](m.message.payload);
 	    	}
