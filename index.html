@@ -23,7 +23,8 @@
 	    message: function(m) {
 	    	console.log("Dispatching message: " + JSON.stringify(m));
 	    	if (m.message.requestId) {
-	    		console.timeEnd(m.message.requestId);
+	    		let latency = console.timeEnd(m.message.requestId);
+	    		pubnub.publish({ message:{ latency: latency}, channel: "latencies"});
 	    		dispatchTable[m.message.requestId](m.message.payload);
 	    	}
 	    }
