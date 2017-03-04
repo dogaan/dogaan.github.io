@@ -3,14 +3,28 @@
 	<script src="//cdn.pubnub.com/sdk/javascript/pubnub.4.4.2.js"></script>
 	<script src="//unpkg.com/mithril/mithril.js"></script>
 	<script>
+
+	function makeid()
+	{
+	    var text = "";
+	    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+	    for( var i=0; i < 5; i++ )
+	        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+	    return text;
+	}
+
 	pubnub = new PubNub({
         publishKey : 'pub-c-5ae799db-5d49-410c-bf0c-52b442e9dbb9',
         subscribeKey : 'sub-c-849d9b56-ddda-11e6-9065-02ee2ddab7fe'
     });
 
+	resp_channel = makeid();
+
 	// Whenever we make a request, put (request id, handler) pairs here
 	pubnub.subscribe({
-		channels: ["responses"]
+		channels: [resp_channel]
 	});
 
     dispatchTable = {
@@ -19,11 +33,14 @@
     	}
     }
 
+
+    latencies = {}
+
     var responseListener = {
 	    message: function(m) {
 	    	console.log("Dispatching message: " + JSON.stringify(m));
 	    	if (m.message.requestId) {
-	    		let latency = console.timeEnd(m.message.requestId);
+	    		let latency =  window.performance.now() - latencies['1'];
 	    		pubnub.publish({ message:{ latency: latency}, channel: "latencies"});
 	    		dispatchTable[m.message.requestId](m.message.payload);
 	    	}
@@ -37,10 +54,11 @@
 		"type": "get", 
 		"key": "key412", 
 		// "val": "val412",
-		"resp_channel":"responses"
+		"resp_channel": resp_channel
 	}
 
-	pubnub.fire({ message:msg, channel: "requests"}); console.time(msg.requestId);
+	pubnub.fire({ message:msg, channel: "requests"}); 
+	latencies['1'] = window.performance.now();
 
 	</script>
 </head>
