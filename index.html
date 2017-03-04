@@ -2,7 +2,48 @@
 <head>
 	<script src="//cdn.pubnub.com/sdk/javascript/pubnub.4.4.2.js"></script>
 	<script src="//unpkg.com/mithril/mithril.js"></script>
+	<script>
+	pubnub = new PubNub({
+        publishKey : 'pub-c-5ae799db-5d49-410c-bf0c-52b442e9dbb9',
+        subscribeKey : 'sub-c-849d9b56-ddda-11e6-9065-02ee2ddab7fe'
+    });
+
+	// Whenever we make a request, put (request id, handler) pairs here
+	pubnub.subscribe({
+		channels: ["responses"]
+	});
+
+    dispatchTable = {
+    	1: function(payload) {
+    		console.log("Dispatch function get payload: " + payload);
+    	}
+    }
+
+    var responseListener = {
+	    message: function(m) {
+	    	console.log("Dispatching message: " + JSON.stringify(m));
+	    	if (m.message.requestId) {
+	    		console.timeEnd(m.message.requestId);
+	    		dispatchTable[m.message.requestId](m.message.payload);
+	    	}
+	    }
+	}
+
+	pubnub.addListener(responseListener);
+
+	msg = {
+		"requestId": 1, 
+		"type": "get", 
+		"key": "key412", 
+		// "val": "val412",
+		"resp_channel":"responses"
+	}
+
+	pubnub.fire({ message:msg, channel: "requests"}); console.time(msg.requestId);
+
+	</script>
 </head>
 <body>
 	OK
 </body>
+</html>
