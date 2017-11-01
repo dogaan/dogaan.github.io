@@ -12,7 +12,7 @@ var app = {
             publishKey: 'pub-c-56f666f3-ab4c-4fb0-9788-4edf390f6b17',
             subscribeKey: 'sub-c-51020bea-bf31-11e7-bf1e-62e28d924c11'
         }, {
-            globalChannel: 'global',
+            globalChannel: 'chat-engine-demo2',
             endpoint: 'https://pubsub.pubnub.com/v1/blocks/sub-key/sub-c-51020bea-bf31-11e7-bf1e-62e28d924c11/chat-engine-server'
 
         });
@@ -22,7 +22,7 @@ var app = {
 
         this.ChatEngine.on('$.ready', function(data) {
             app.me = data.me;
-            app.chat = new app.ChatEngine.Chat('chat-engine-demo');
+            app.chat = new app.ChatEngine.Chat('chat-engine-demo2');
             
             // Listen for users coming online
             // Presence Joins and Herenows
