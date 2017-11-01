@@ -1,0 +1,90 @@
+<html>
+<head>
+<script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.4.2.js"></script>
+<script src="https://unpkg.com/mithril@1.0.1/mithril.js"></script>
+	<script>
+	window.onload = function() {
+		var root = document.body;
+		function makeid()
+		{
+		    var text = "";
+		    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+		    for( var i=0; i < 5; i++ )
+		        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+		    return text;
+		}
+
+		pubnub = new PubNub({
+	        publishKey : 'pub-c-5ae799db-5d49-410c-bf0c-52b442e9dbb9',
+	        subscribeKey : 'sub-c-849d9b56-ddda-11e6-9065-02ee2ddab7fe'
+	    });
+
+		resp_channel = makeid();
+
+		// Whenever we make a request, put (request id, handler) pairs here
+		pubnub.subscribe({
+			channels: [resp_channel]
+		});
+
+	    dispatchTable = {
+	    	1: function(payload) {
+	    		console.log("Dispatch function get payload: " + payload);
+	    	}
+	    }
+
+
+	    latencies = {}
+
+	    var responseListener = {
+		    message: function(msg) {
+		    	console.log("Dispatching message: " + JSON.stringify(m));
+		    	if (msg.message.requestId) {
+		    		let mithrilCdnLatency = 0;
+		    		let pubnubCdnLatency = 0;
+		    		if (window.performance.getEntriesByName) {
+		    			mithrilCdnLatency = window.performance.getEntriesByName("https://unpkg.com/mithril@1.0.1/mithril.js")[0].duration.toFixed(3) || 0;
+		    			pubnubCdnLatency = window.performance.getEntriesByName("https://cdn.pubnub.com/sdk/javascript/pubnub.4.4.2.js")[0].duration.toFixed(3) || 0; 
+		    		}
+		    		let latency =  (window.performance.now() - latencies['1']).toFixed(3);
+		    		let toFirstLine = (msg.message.timeToken/10000) - (window.performance.timing.navigationStart + latencies['1']);
+
+		    		m.render(root, m("main", [
+					    m("h1", {class: "title"}, "Pub-Blocks-Sub Total Latency:\n" + latency),
+					    // m("h1", {class: "title"}, "Pub-Blocks To First Line Latency:\n" + toFirstLine),
+					    m("h1", {class: "title"}, "CDN PubNub SDK Latency:\n" + pubnubCdnLatency),
+					    m("h1", {class: "title"}, "CDN Mithril DL Latency:\n" + mithrilCdnLatency),
+					]))
+
+		    		pubnub.publish({ 
+		    			message:{ 
+		    				latency: latency,
+		    				mithrilCdnLatency: mithrilCdnLatency,
+		    				pubnubCdnLatency: pubnubCdnLatency
+		    		}, channel: "latencies"});
+		    		dispatchTable[msg.message.requestId](msg.message.payload);
+		    	}
+		    }
+		}
+
+		pubnub.addListener(responseListener);
+
+		msg = {
+			"requestId": 1, 
+			"type": "get", 
+			"key": "key412", 
+			// "val": "val412",
+			"resp_channel": resp_channel
+		}
+
+		pubnub.fire({ message:msg, channel: "requests"}); 
+		latencies['1'] = window.performance.now();
+	}
+	</script>
+	
+</head>
+<body>
+	OK
+</body>
+</html>
