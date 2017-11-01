@@ -6,21 +6,15 @@ var app = {
     users: {},
     messages: [],
     init: function() {
-        // this.ChatEngine = ChatEngineCore.create({
-        //     publishKey: 'pub-c-5ae799db-5d49-410c-bf0c-52b442e9dbb9',
-        //     subscribeKey: 'sub-c-849d9b56-ddda-11e6-9065-02ee2ddab7fe'
-        // }, {
-        //     endpoint: 'http://localhost:3000/insecure',
-        //     globalChannel: 'chat-engine-demo'
-        // });
 
         // Make sure to import ChatEngine first!
         this.ChatEngine = ChatEngineCore.create({
-            publishKey: 'pub-c-f9e706da-5972-4b9a-a833-7549447d11e0',
-            subscribeKey: 'sub-c-92efcd4c-be7f-11e7-bf1e-62e28d924c11'
+            publishKey: 'pub-c-56f666f3-ab4c-4fb0-9788-4edf390f6b17',
+            subscribeKey: 'sub-c-51020bea-bf31-11e7-bf1e-62e28d924c11'
         }, {
             globalChannel: 'global',
-            endpoint: 'https://pubsub.pubnub.com/v1/blocks/sub-key/sub-c-92efcd4c-be7f-11e7-bf1e-62e28d924c11/chat-engine-server'
+            endpoint: 'https://pubsub.pubnub.com/v1/blocks/sub-key/sub-c-51020bea-bf31-11e7-bf1e-62e28d924c11/chat-engine-server'
+
         });
 
         let newPerson = generatePerson(true);
