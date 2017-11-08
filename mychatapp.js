@@ -107,7 +107,6 @@ var app = {
         var userTemp = Handlebars.compile($("#message-response-template").html());
 
         var template = userTemp;
-        debugger;
         if (message.sender.uuid == app.me.uuid) {
             template = meTemp;
         }
