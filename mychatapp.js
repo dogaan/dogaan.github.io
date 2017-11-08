@@ -1,3 +1,14 @@
+var ChatEngineInitParams = [
+  {
+    publishKey: 'pub-c-31365c8b-8128-4c58-8fc8-ca26b3b6a138',
+    subscribeKey: 'sub-c-6be8075c-c413-11e7-ba65-4295fab41076'
+  }, {
+    // debug: true,
+      globalChannel: 'global-tester2',
+      endpoint: 'https://pubsub.pubnub.com/v1/blocks/sub-key/sub-c-73eb70de-c3f4-11e7-b375-767e250a4e65/server'
+  }
+];
+
 var app = {
     messageToSend: '',
     ChatEngine: false,
@@ -6,21 +17,23 @@ var app = {
     users: {},
     messages: [],
     init: function() {
-
         // Make sure to import ChatEngine first!
         this.ChatEngine = ChatEngineCore.create({
-            publishKey: 'pub-c-56f666f3-ab4c-4fb0-9788-4edf390f6b17',
-            subscribeKey: 'sub-c-51020bea-bf31-11e7-bf1e-62e28d924c11'
-        }, {
-            globalChannel: 'chat-engine-demo2',
-            endpoint: 'https://pubsub.pubnub.com/v1/blocks/sub-key/sub-c-51020bea-bf31-11e7-bf1e-62e28d924c11/chat-engine-server'
-
+            publishKey: 'pub-c-31365c8b-8128-4c58-8fc8-ca26b3b6a138',
+            subscribeKey: 'sub-c-6be8075c-c413-11e7-ba65-4295fab41076'
         });
 
-        let newPerson = generatePerson(true);
-        this.ChatEngine.connect(newPerson.uuid, newPerson, 'auth-key');
+        // Let's remember our random generated users :)
+        var myChatUser = JSON.parse(localStorage.getItem("myChatUser"));
+        if (!myChatUser) {
+            myChatUser = generatePerson(true);
+            localStorage.setItem('myChatUser', JSON.stringify(myChatUser));
+        }
+        
+        this.ChatEngine.connect(myChatUser.uuid, myChatUser, 'auth-key');
 
         this.ChatEngine.on('$.ready', function(data) {
+
             app.me = data.me;
             app.chat = new app.ChatEngine.Chat('chat-engine-demo2');
             
@@ -39,7 +52,18 @@ var app = {
 
             // Listen for messages.
             app.chat.on('message', function(message) {
+                console.log(message)
                 app.renderMessage(message);
+            });
+
+            let searchy = app.chat.search({
+              reverse: true,
+              event: 'message',
+              limit: 50
+            });
+
+            searchy.on('message', (data) => {
+              app.renderMessage(data);
             });
 
         });
@@ -50,7 +74,9 @@ var app = {
         this.messageToSend = this.$textarea.val()
         if (this.messageToSend.trim() !== '') {
             this.$textarea.val('');
-            this.chat.emit('message', this.messageToSend);
+            this.chat.emit('message', {
+                text: this.messageToSend
+            });
         }
     },
     
@@ -81,13 +107,15 @@ var app = {
         var userTemp = Handlebars.compile($("#message-response-template").html());
 
         var template = userTemp;
-
+        debugger;
         if (message.sender.uuid == app.me.uuid) {
             template = meTemp;
         }
 
+        console.log(message)
+
         var context = {
-            messageOutput: message.data,
+            messageOutput: message.data.text,
             time: app.getCurrentTime(),
             user: message.sender.state
         };
@@ -111,10 +139,6 @@ var app = {
         return new Date().toLocaleTimeString().
         replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
     },
-    getRandomItem: function(arr) {
-        return arr[Math.floor(Math.random() * arr.length)];
-    }
-
 };
 app.cacheDOM();
 app.bindEvents();

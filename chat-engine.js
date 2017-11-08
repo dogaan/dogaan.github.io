@@ -926,21 +926,12 @@ class Emitter extends RootEmitter {
             // if we should try to restore the sender property
             if (payload.sender) {
 
-                // this use already exists in memory
-                if (this.chatEngine.users[payload.sender] && this.chatEngine.users[payload.sender]._stateFetched) {
-                    payload.sender = this.chatEngine.users[payload.sender];
+                // the user doesn't exist, create it
+                payload.sender = new this.chatEngine.User(payload.sender);
+
+                payload.sender._getState(() => {
                     complete();
-                } else {
-
-                    // the user doesn't exist, create it
-                    payload.sender = new this.chatEngine.User(payload.sender);
-
-                    // try to get stored state from server
-                    payload.sender._getState(this, () => {
-                        complete();
-                    });
-
-                }
+                });
 
             } else {
                 // there's no "sender" in this object, move on
@@ -7669,19 +7660,54 @@ class User extends Emitter {
     Get stored user state from remote server.
     @private
     */
-    _getState(chat, callback) {
+    _getState(callback) {
 
-        this.chatEngine.request('get', 'user_state', { user: this.uuid })
-            .then((response) => {
+        if (!this._stateFetched) {
 
-                this.assign(response.data);
-                this._stateFetched = true;
-                callback();
+            this.chatEngine.pubnub.getState({
+                uuid: this.uuid,
+                channels: [this.chatEngine.global.channel]
+            }, (status, response) => {
 
-            })
-            .catch(() => {
-                this.chatEngine.throwError(chat, 'trigger', 'getState', new Error('There was a problem getting state from the PubNub network.'));
+                if (status.statusCode === 200) {
+
+                    let pnState = response.channels[this.chatEngine.global.channel];
+                    if (Object.keys(pnState).length) {
+
+                        this.assign(response.data);
+
+                        this._stateFetched = true;
+                        callback(this.state);
+
+                    } else {
+
+                        this.chatEngine.request('get', 'user_state', {
+                            user: this.uuid
+                        })
+                            .then((res) => {
+
+                                this.assign(res.data);
+
+                                this._stateFetched = true;
+                                callback(this.state);
+
+                            })
+                            .catch((err) => {
+                                // console.log('this is hte err', err);
+                                this.chatEngine.throwError(this, 'trigger', 'getState', err);
+                            });
+
+                    }
+
+                } else {
+                    this.chatEngine.throwError(this, 'trigger', 'getState', new Error('There was a problem getting state from the PubNub network.'));
+                }
+
             });
+
+        } else {
+            callback(this.state);
+        }
 
     }
 
@@ -8159,6 +8185,7 @@ module.exports = (ceConfig = {}, pnConfig = {}) => {
             let internalChannel = ChatEngine.augmentChannel(args[0], args[1]);
 
             if (ChatEngine.chats[internalChannel]) {
+
                 return ChatEngine.chats[internalChannel];
             } else {
 
@@ -8190,7 +8217,10 @@ module.exports = (ceConfig = {}, pnConfig = {}) => {
 
             if (ChatEngine.me.uuid === args[0]) {
                 return ChatEngine.me;
+            } else if (ChatEngine.users[args[0]]) {
+                return ChatEngine.users[args[0]];
             } else {
+
                 super(ChatEngine, ...args);
 
                 /**
@@ -10426,7 +10456,7 @@ class Chat extends Emitter {
 
                 this.chatEngine.request('post', 'join', { chat: this.objectify() })
                     .then(() => {
-                        this.onConnectionReady();
+                        next();
                     })
                     .catch(next);
 
@@ -10442,7 +10472,7 @@ class Chat extends Emitter {
                             this.update(this.meta);
                         }
 
-                        next();
+                        this.onConnectionReady();
 
                     })
                     .catch(next);

@@ -1,4 +1,10 @@
 var generatePerson = function(online) {
+
+        var myChatUser = JSON.parse(localStorage.getItem("myChatUser"));
+        if (myChatUser) {
+            return myChatUser;
+        }
+
         var person = {};
 
         var names = "Vincent Porter Aiden Chavez Mike Thomas Erica Hughes Ginger Johnston Tracy Carpenter Stephen Blum Christian Kelly Monica Ward Todd Green Ian Jennings Dean Henry Peyton Mckinney".split(" ");
@@ -27,6 +33,8 @@ var generatePerson = function(online) {
 
         person.lastSeen = Math.floor(Math.random() * 60);
 
+
+        localStorage.setItem('myChatUser', JSON.stringify(person));
         return person;
 
     }
