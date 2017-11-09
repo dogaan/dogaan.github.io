@@ -6,9 +6,8 @@ We'll get you started with some existing UI on Codepen and walk you through the 
 
 Below is the final Codepen we will build which is a simple chat app with online presence and message history.
 
-<iframe height='600' width='770' scrolling='no' title='ChatEngine Embed 0.3 - Message History' src='//codepen.io/team/PubNub/embed/pdbXje/?height=265&theme-id=light&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/team/PubNub/pen/pdbXje/'>ChatEngine Embed 0.3 - Message History</a> by PubNub (<a href='https://codepen.io/PubNub'>@PubNub</a>) on <a href='https://codepen.io'>CodePen</a>.
-</iframe>
-<br>
+![Codepen Embed](https://dogaan.github.io/codepenscreenshot.png)(https://codepen.io/team/PubNub/pen/pdbXje/)
+
 You don't need to copy/paste anything other than your publish/subscribe keys here. All the functional code will be in the Codepens provided.
 
 Before we start, let's get your account configured for ChatEngine so you can plug your PubNub keys in the Codepen examples and play around.
@@ -57,8 +56,9 @@ ChatEngine.on('$.ready', function(data) {
     });
 }
 ```
-<iframe height='600' width='600' scrolling='no' title='ChatEngine Embed 0.1 - Barebones Chat' src='//codepen.io/team/PubNub/embed/8e380bf717533d36641f4a5a8acfaccb/?height=265&theme-id=light&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/team/PubNub/pen/8e380bf717533d36641f4a5a8acfaccb/'>ChatEngine Embed 0.1 - Barebones Chat</a> by PubNub (<a href='https://codepen.io/PubNub'>@PubNub</a>) on <a href='https://codepen.io'>CodePen</a>.
-</iframe>
+
+![Codepen Embed](https://dogaan.github.io/codepenscreenshot.png)
+(https://codepen.io/team/PubNub/pen/8e380bf717533d36641f4a5a8acfaccb/)
 
 Above is a Codepen that implements this piece of code with some UI. Click on the top right corner to edit on Codepen so you can plug your publish/subscribe keys in the JS code where it says
 ``publishKey: 'YOUR PUBLISH KEY',
@@ -88,8 +88,9 @@ this.chat.on('$.offline.*', function(data) {
 Here is another Codepen that implements the code above with some new UI to show when your users come online! Once, again update the JS code with your publish/subscribe keys and you're good to go. It will generate a fake user for you and even display an avatar.
 
 **Pro Tip:** Open it in 2 different tabs (one incognito) and you can see the other fake user come online!
-<iframe height='600' width='600' scrolling='no' title='ChatEngine Embed 0.2 - Online Presence Tracking' src='//codepen.io/team/PubNub/embed/9bbda22c4c0ffccfb8877f5f07dac512/?height=265&theme-id=light&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/team/PubNub/pen/9bbda22c4c0ffccfb8877f5f07dac512/'>ChatEngine Embed 0.2 - Online Presence Tracking</a> by PubNub (<a href='https://codepen.io/PubNub'>@PubNub</a>) on <a href='https://codepen.io'>CodePen</a>.
-</iframe> 
+
+![Codepen Embed](https://dogaan.github.io/codepenscreenshot.png)
+(https://codepen.io/team/PubNub/pen/9bbda22c4c0ffccfb8877f5f07dac512/)
 
 ###Provide message history for your channels
 Providing a chat history helps retain context and makes chat stickier. Let's add some code to provide a 50 message chat history for your users.
@@ -109,6 +110,5 @@ As usual, just click on the Codepen below, add your publish/subscribe keys and s
 
 **Tip:** In order to see message history in action, type a couple messages, reload the page and see your messages magically reappear.
 
-<iframe height='600' width='600' scrolling='no' title='ChatEngine Embed 0.3 - Message History' src='//codepen.io/team/PubNub/embed/YENqdY/?height=265&theme-id=light&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/team/PubNub/pen/YENqdY/'>ChatEngine Embed 0.3 - Message History</a> by PubNub (<a href='https://codepen.io/PubNub'>@PubNub</a>) on <a href='https://codepen.io'>CodePen</a>.
-</iframe>
+![Codepen Embed](https://dogaan.github.io/codepenscreenshot.png)https://codepen.io/team/PubNub/pen/YENqdY/
 
