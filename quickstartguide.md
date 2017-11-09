@@ -18,7 +18,7 @@ Click [here](https://chat-engine-docs.surge.sh/docs/tutorial-pubnub.html) to get
 
 Now, let's build a chat app with ChatEngine in 5 quick steps!
 
-###ChatEngine Instantiation
+### ChatEngine Instantiation
 The first step to every ChatEngine client is instantiating an instance of ChatEngine. Below is an example of how you would instantiate.
 
 ```javascript
@@ -28,7 +28,7 @@ ChatEngine = ChatEngineCore.create({
 });
 ```
 
-###Connecting your ChatEngine client to PubNub
+### Connecting your ChatEngine client to PubNub
 This step brings the client online in your global channel. You can think of it as being in the lobby. It requires that you provide a unique identifier for the client, an object that will be shared with all other clients to describe the user for this client and a token that will help PubNub determine the access privileges for this user.
 
 Example `connect` call:
@@ -38,7 +38,7 @@ ChatEngine.connect(String(new Date().getTime()), { nickName: "LoyalPubNubian" },
 
 The `connect` call is asynchronous and fires a `$.ready` event when it successfully connects. Any code that follows should listen for this event and execute code in its handler.
 
-###Creating/joining a chat room and listen for messages
+### Creating/joining a chat room and listen for messages
 Now that you're connected to the PubNub network, you can create/join a chat and start chatting! Of course the first step to a successful chat is listening. Example below shows you how to create/join a chat, listen to messages sent to it as well as sending messages to this chat.
 
 ```javascript
@@ -68,7 +68,7 @@ Now you're ready to chat!
 
 **Pro Tip:** Open it in 2 different tabs (one incognito) and you can chat with yourself!
 
-###Track the online presence of your users
+### Track the online presence of your users
 It's fun to see who is online in a chat app and ChatEngine makes it super easy to track that. All you have to do is provide callbacks for `$.online.*` and `$.offline.*`. ChatEngine will fire these when users become online or go offline.
 
 ```javascript
@@ -92,7 +92,7 @@ Here is another Codepen that implements the code above with some new UI to show 
 ![Codepen Embed](https://dogaan.github.io/codepenscreenshot.png)
 (https://codepen.io/team/PubNub/pen/9bbda22c4c0ffccfb8877f5f07dac512/)
 
-###Provide message history for your channels
+### Provide message history for your channels
 Providing a chat history helps retain context and makes chat stickier. Let's add some code to provide a 50 message chat history for your users.
 
 ```javascript
