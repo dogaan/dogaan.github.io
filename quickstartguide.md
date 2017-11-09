@@ -13,7 +13,7 @@ You don't need to copy/paste anything other than your publish/subscribe keys her
 
 Before we start, let's get your account configured for ChatEngine so you can plug your PubNub keys in the Codepen examples and play around.
 
-(WHAT'S BELOW WILL BE A BUTTON THAT WILL SPIN AND SPIT OUT THE KEYS ON THIS PAGE. FOR NOW PLEASE CLICK ON THE LINK BELOW, CONFIGURE YOUR ACCOUNT AND COME BACK TO THIS PAGE)
+(WHAT'S BELOW WILL BE A BUTTON THAT WILL SPIN AND SPIT OUT THE KEYS ON THIS PAGE. FOR NOW PLEASE OPEN THE LINK BELOW IN A NEW TAB, CONFIGURE YOUR ACCOUNT AND COME BACK TO THIS PAGE)
 
 Click [here](https://chat-engine-docs.surge.sh/docs/tutorial-pubnub.html) to get your account configured for ChatEngine or click here if you don't have an account.
 
