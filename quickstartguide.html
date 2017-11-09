@@ -1,0 +1,128 @@
+<h2 id="quick-start-guide">Quick start Guide</h2>
+
+<p>PubNub ChatEngine is an object oriented event emitter based framework for building chat applications in Javascript. It reduces the time to build chat applications drastically and provides essential components like typing indicators, online presence monitoring and message history out of the box.</p>
+
+<p>We’ll get you started with some existing UI on Codepen and walk you through the key elements of a chat application with ChatEngine. This guide only shows you how to build with ChatEngine using JavaScript but you can easily integrate ChatEngine to your IOS and Android applications using React Native. See the links at the end of this guide to see how.</p>
+
+<p>Below is the final Codepen we will build which is a simple chat app with online presence and message history.</p>
+
+<iframe height="600" width="770" scrolling="no" title="ChatEngine Embed 0.3 - Message History" src="//codepen.io/team/PubNub/embed/pdbXje/?height=265&amp;theme-id=light&amp;default-tab=result&amp;embed-version=2" allowfullscreen="true">See the Pen &lt;a href="https://codepen.io/team/PubNub/pen/pdbXje/"&gt;ChatEngine Embed 0.3 - Message History&lt;/a&gt; by PubNub (&lt;a href="https://codepen.io/PubNub"&gt;@PubNub&lt;/a&gt;) on &lt;a href="https://codepen.io"&gt;CodePen&lt;/a&gt;.&amp;#10;</iframe>
+
+<p><br>
+You don’t need to copy/paste anything other than your publish/subscribe keys here. All the functional code will be in the Codepens provided.</p>
+
+<p>Before we start, let’s get your account configured for ChatEngine so you can plug your PubNub keys in the Codepen examples and play around.</p>
+
+<p>(WHAT’S BELOW WILL BE A BUTTON THAT WILL SPIN AND SPIT OUT THE KEYS ON THIS PAGE. FOR NOW PLEASE OPEN THE LINK BELOW IN A NEW TAB, CONFIGURE YOUR ACCOUNT AND COME BACK TO THIS PAGE)</p>
+
+<p>Click <a href="https://chat-engine-docs.surge.sh/docs/tutorial-pubnub.html">here</a> to get your account configured for ChatEngine or click here if you don’t have an account.</p>
+
+<p>Now, let’s build a chat app with ChatEngine in 5 quick steps!</p>
+
+
+
+<h3 id="chatengine-instantiation">ChatEngine Instantiation</h3>
+
+<p>The first step to every ChatEngine client is instantiating an instance of ChatEngine. Below is an example of how you would instantiate.</p>
+
+
+
+<pre class="prettyprint"><code class="language-javascript hljs ">ChatEngine = ChatEngineCore.create({
+    publishKey: <span class="hljs-string">'&lt;YOUR PUBLISH KEY&gt;'</span>,
+    subscribeKey: <span class="hljs-string">'&lt;YOUR SUBSCRIBE KEY&gt;'</span>
+});</code></pre>
+
+
+
+<h3 id="connecting-your-chatengine-client-to-pubnub">Connecting your ChatEngine client to PubNub</h3>
+
+<p>This step brings the client online in your global channel. You can think of it as being in the lobby. It requires that you provide a unique identifier for the client, an object that will be shared with all other clients to describe the user for this client and a token that will help PubNub determine the access privileges for this user.</p>
+
+<p>Example <code>connect</code> call:</p>
+
+
+
+<pre class="prettyprint"><code class="language-javascript hljs ">ChatEngine.connect(<span class="hljs-built_in">String</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime()), { nickName: <span class="hljs-string">"LoyalPubNubian"</span> }, <span class="hljs-string">'auth-key'</span>);</code></pre>
+
+<p>The <code>connect</code> call is asynchronous and fires a <code>$.ready</code> event when it successfully connects. Any code that follows should listen for this event and execute code in its handler.</p>
+
+
+
+<h3 id="creatingjoining-a-chat-room-and-listen-for-messages">Creating/joining a chat room and listen for messages</h3>
+
+<p>Now that you’re connected to the PubNub network, you can create/join a chat and start chatting! Of course the first step to a successful chat is listening. Example below shows you how to create/join a chat, listen to messages sent to it as well as sending messages to this chat.</p>
+
+
+
+<pre class="prettyprint"><code class="language-javascript hljs ">ChatEngine.on(<span class="hljs-string">'$.ready'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data)</span> {</span>
+    <span class="hljs-keyword">this</span>.chat = <span class="hljs-keyword">new</span> ChatEngine.Chat(<span class="hljs-string">'my-first-chat'</span>);
+
+    <span class="hljs-comment">// Listen for messages.</span>
+    <span class="hljs-keyword">this</span>.chat.on(<span class="hljs-string">'message'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(message)</span> {</span>
+        console.log(message)
+    });
+
+    <span class="hljs-comment">// Say hi!</span>
+    <span class="hljs-keyword">this</span>.chat.emit(<span class="hljs-string">'message'</span>, {
+        text: <span class="hljs-string">'Hi everyone!'</span>
+    });
+}</code></pre>
+
+<iframe height="600" width="600" scrolling="no" title="ChatEngine Embed 0.1 - Barebones Chat" src="//codepen.io/team/PubNub/embed/8e380bf717533d36641f4a5a8acfaccb/?height=265&amp;theme-id=light&amp;default-tab=result&amp;embed-version=2" allowfullscreen="true">See the Pen &lt;a href="https://codepen.io/team/PubNub/pen/8e380bf717533d36641f4a5a8acfaccb/"&gt;ChatEngine Embed 0.1 - Barebones Chat&lt;/a&gt; by PubNub (&lt;a href="https://codepen.io/PubNub"&gt;@PubNub&lt;/a&gt;) on &lt;a href="https://codepen.io"&gt;CodePen&lt;/a&gt;.&amp;#10;</iframe>
+
+<p>Above is a Codepen that implements this piece of code with some UI. Click on the top right corner to edit on Codepen so you can plug your publish/subscribe keys in the JS code where it says <br>
+<code>publishKey: 'YOUR PUBLISH KEY', <br>
+  subscribeKey: 'YOUR SUBSCRIBE KEY' <br>
+</code> <br>
+Now you’re ready to chat! </p>
+
+<p><strong>Pro Tip:</strong> Open it in 2 different tabs (one incognito) and you can chat with yourself!</p>
+
+
+
+<h3 id="track-the-online-presence-of-your-users">Track the online presence of your users</h3>
+
+<p>It’s fun to see who is online in a chat app and ChatEngine makes it super easy to track that. All you have to do is provide callbacks for <code>$.online.*</code> and <code>$.offline.*</code>. ChatEngine will fire these when users become online or go offline.</p>
+
+
+
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-comment">// Listen for users coming online</span>
+<span class="hljs-keyword">this</span>.chat.on(<span class="hljs-string">'$.online.*'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data)</span> {</span>
+    <span class="hljs-keyword">this</span>.users[data.user.uuid] = data.user;
+    <span class="hljs-keyword">this</span>.renderUsers();
+});
+
+<span class="hljs-comment">// Listen for users going offline</span>
+<span class="hljs-keyword">this</span>.chat.on(<span class="hljs-string">'$.offline.*'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data)</span> {</span>
+    <span class="hljs-keyword">delete</span> app.users[data.user.uuid];
+    <span class="hljs-keyword">this</span>.renderUsers();
+});</code></pre>
+
+<p>Here is another Codepen that implements the code above with some new UI to show when your users come online! Once, again update the JS code with your publish/subscribe keys and you’re good to go. It will generate a fake user for you and even display an avatar.</p>
+
+<p><strong>Pro Tip:</strong> Open it in 2 different tabs (one incognito) and you can see the other fake user come online!</p>
+
+<iframe height="600" width="600" scrolling="no" title="ChatEngine Embed 0.2 - Online Presence Tracking" src="//codepen.io/team/PubNub/embed/9bbda22c4c0ffccfb8877f5f07dac512/?height=265&amp;theme-id=light&amp;default-tab=result&amp;embed-version=2" allowfullscreen="true">See the Pen &lt;a href="https://codepen.io/team/PubNub/pen/9bbda22c4c0ffccfb8877f5f07dac512/"&gt;ChatEngine Embed 0.2 - Online Presence Tracking&lt;/a&gt; by PubNub (&lt;a href="https://codepen.io/PubNub"&gt;@PubNub&lt;/a&gt;) on &lt;a href="https://codepen.io"&gt;CodePen&lt;/a&gt;.&amp;#10;</iframe> 
+
+
+
+<h3 id="provide-message-history-for-your-channels">Provide message history for your channels</h3>
+
+<p>Providing a chat history helps retain context and makes chat stickier. Let’s add some code to provide a 50 message chat history for your users.</p>
+
+
+
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-comment">// Show history of your channel</span>
+<span class="hljs-keyword">this</span>.chat.search({
+    reverse: <span class="hljs-literal">true</span>,
+    event: <span class="hljs-string">'message'</span>,
+    limit: <span class="hljs-number">50</span>
+}).on(<span class="hljs-string">'message'</span>, (data) =&gt; {
+    <span class="hljs-keyword">this</span>.renderMessage(data);
+});</code></pre>
+
+<p>As usual, just click on the Codepen below, add your publish/subscribe keys and see the message history in action. Try commenting it out and refreshing the page to see how you can turn it on/off.</p>
+
+<p><strong>Tip:</strong> In order to see message history in action, type a couple messages, reload the page and see your messages magically reappear.</p>
+
+<iframe height="600" width="600" scrolling="no" title="ChatEngine Embed 0.3 - Message History" src="//codepen.io/team/PubNub/embed/YENqdY/?height=265&amp;theme-id=light&amp;default-tab=result&amp;embed-version=2" allowfullscreen="true">See the Pen &lt;a href="https://codepen.io/team/PubNub/pen/YENqdY/"&gt;ChatEngine Embed 0.3 - Message History&lt;/a&gt; by PubNub (&lt;a href="https://codepen.io/PubNub"&gt;@PubNub&lt;/a&gt;) on &lt;a href="https://codepen.io"&gt;CodePen&lt;/a&gt;.&amp;#10;</iframe>
