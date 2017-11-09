@@ -112,4 +112,3 @@ As usual, just click on the Codepen below, add your publish/subscribe keys and s
 <iframe height='600' width='600' scrolling='no' title='ChatEngine Embed 0.3 - Message History' src='//codepen.io/team/PubNub/embed/YENqdY/?height=265&theme-id=light&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/team/PubNub/pen/YENqdY/'>ChatEngine Embed 0.3 - Message History</a> by PubNub (<a href='https://codepen.io/PubNub'>@PubNub</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
-
