@@ -22,8 +22,6 @@
 
 <p>The first step to every ChatEngine client is instantiating an instance of ChatEngine. Below is an example of how you would instantiate.</p>
 
-
-
 <pre class="prettyprint"><code class="language-javascript hljs ">ChatEngine = ChatEngineCore.create({
     publishKey: <span class="hljs-string">'&lt;YOUR PUBLISH KEY&gt;'</span>,
     subscribeKey: <span class="hljs-string">'&lt;YOUR SUBSCRIBE KEY&gt;'</span>
@@ -37,8 +35,6 @@
 
 <p>Example <code>connect</code> call:</p>
 
-
-
 <pre class="prettyprint"><code class="language-javascript hljs ">ChatEngine.connect(<span class="hljs-built_in">String</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime()), { nickName: <span class="hljs-string">"LoyalPubNubian"</span> }, <span class="hljs-string">'auth-key'</span>);</code></pre>
 
 <p>The <code>connect</code> call is asynchronous and fires a <code>$.ready</code> event when it successfully connects. Any code that follows should listen for this event and execute code in its handler.</p>
@@ -48,8 +44,6 @@
 <h3 id="creatingjoining-a-chat-room-and-listen-for-messages">Creating/joining a chat room and listen for messages</h3>
 
 <p>Now that you’re connected to the PubNub network, you can create/join a chat and start chatting! Of course the first step to a successful chat is listening. Example below shows you how to create/join a chat, listen to messages sent to it as well as sending messages to this chat.</p>
-
-
 
 <pre class="prettyprint"><code class="language-javascript hljs ">ChatEngine.on(<span class="hljs-string">'$.ready'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data)</span> {</span>
     <span class="hljs-keyword">this</span>.chat = <span class="hljs-keyword">new</span> ChatEngine.Chat(<span class="hljs-string">'my-first-chat'</span>);
@@ -80,8 +74,6 @@ Now you’re ready to chat! </p>
 
 <p>It’s fun to see who is online in a chat app and ChatEngine makes it super easy to track that. All you have to do is provide callbacks for <code>$.online.*</code> and <code>$.offline.*</code>. ChatEngine will fire these when users become online or go offline.</p>
 
-
-
 <pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-comment">// Listen for users coming online</span>
 <span class="hljs-keyword">this</span>.chat.on(<span class="hljs-string">'$.online.*'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data)</span> {</span>
     <span class="hljs-keyword">this</span>.users[data.user.uuid] = data.user;
@@ -104,8 +96,6 @@ Now you’re ready to chat! </p>
 <h3 id="provide-message-history-for-your-channels">Provide message history for your channels</h3>
 
 <p>Providing a chat history helps retain context and makes chat stickier. Let’s add some code to provide a 50 message chat history for your users.</p>
-
-
 
 <pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-comment">// Show history of your channel</span>
 <span class="hljs-keyword">this</span>.chat.search({
