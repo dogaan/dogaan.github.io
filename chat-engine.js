@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 31);
+/******/ 	return __webpack_require__(__webpack_require__.s = 30);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -80,7 +80,7 @@ return /******/ (function(modules) { // webpackBootstrap
 "use strict";
 
 
-var bind = __webpack_require__(10);
+var bind = __webpack_require__(9);
 var isBuffer = __webpack_require__(34);
 
 /*global toString:true*/
@@ -597,10 +597,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(11);
+    adapter = __webpack_require__(10);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(11);
+    adapter = __webpack_require__(10);
   }
   return adapter;
 }
@@ -733,8 +733,8 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 const waterfall = __webpack_require__(56);
-const RootEmitter = __webpack_require__(15);
-const Event = __webpack_require__(24);
+const RootEmitter = __webpack_require__(14);
+const Event = __webpack_require__(23);
 
 /**
  An ChatEngine generic emitter that supports plugins and forwards
@@ -1029,7 +1029,7 @@ module.exports = exports["default"];
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(26),
+var Symbol = __webpack_require__(25),
     getRawTag = __webpack_require__(66),
     objectToString = __webpack_require__(67);
 
@@ -1098,12 +1098,6 @@ module.exports = isObjectLike;
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(33);
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
 "use strict";
 
 
@@ -1119,7 +1113,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1130,7 +1124,7 @@ var settle = __webpack_require__(37);
 var buildURL = __webpack_require__(39);
 var parseHeaders = __webpack_require__(40);
 var isURLSameOrigin = __webpack_require__(41);
-var createError = __webpack_require__(12);
+var createError = __webpack_require__(11);
 var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(42);
 
 module.exports = function xhrAdapter(config) {
@@ -1307,7 +1301,7 @@ module.exports = function xhrAdapter(config) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1332,7 +1326,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1344,7 +1338,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1370,7 +1364,7 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -1520,7 +1514,7 @@ module.exports = RootEmitter;
 
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(setImmediate, process, global, module) {(function (global, factory) {
@@ -7099,10 +7093,10 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(17).setImmediate, __webpack_require__(1), __webpack_require__(3), __webpack_require__(4)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(16).setImmediate, __webpack_require__(1), __webpack_require__(3), __webpack_require__(4)(module)))
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var apply = Function.prototype.apply;
@@ -7161,7 +7155,7 @@ exports.clearImmediate = clearImmediate;
 
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports) {
 
 /**
@@ -7193,7 +7187,7 @@ module.exports = isArray;
 
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports) {
 
 /**
@@ -7216,7 +7210,7 @@ module.exports = noop;
 
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7237,7 +7231,7 @@ function once(fn) {
 module.exports = exports["default"];
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7258,7 +7252,7 @@ function onlyOnce(fn) {
 module.exports = exports["default"];
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7289,7 +7283,7 @@ exports.default = wrapAsync;
 exports.isAsync = isAsync;
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports) {
 
 /**
@@ -7326,7 +7320,7 @@ module.exports = isObject;
 
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports) {
 
 /**
@@ -7420,11 +7414,11 @@ module.exports = Event;
 
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isFunction = __webpack_require__(65),
-    isLength = __webpack_require__(29);
+    isLength = __webpack_require__(28);
 
 /**
  * Checks if `value` is array-like. A value is considered array-like if it's
@@ -7459,10 +7453,10 @@ module.exports = isArrayLike;
 
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var root = __webpack_require__(27);
+var root = __webpack_require__(26);
 
 /** Built-in value references. */
 var Symbol = root.Symbol;
@@ -7471,10 +7465,10 @@ module.exports = Symbol;
 
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var freeGlobal = __webpack_require__(28);
+var freeGlobal = __webpack_require__(27);
 
 /** Detect free variable `self`. */
 var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
@@ -7486,7 +7480,7 @@ module.exports = root;
 
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
@@ -7497,7 +7491,7 @@ module.exports = freeGlobal;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports) {
 
 /** Used as references for various `Number` constants. */
@@ -7538,10 +7532,9 @@ module.exports = isLength;
 
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const axios = __webpack_require__(9);
 const Emitter = __webpack_require__(5);
 
 /**
@@ -7717,11 +7710,11 @@ module.exports = User;
 
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // allows asynchronous execution flow.
-const init = __webpack_require__(32);
+const init = __webpack_require__(31);
 
 /**
 Global object used to create an instance of {@link ChatEngine}.
@@ -7765,18 +7758,18 @@ module.exports = {
 
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const axios = __webpack_require__(9);
+const axios = __webpack_require__(32);
 const PubNub = __webpack_require__(51);
 const pack = __webpack_require__(52);
 
-const RootEmitter = __webpack_require__(15);
+const RootEmitter = __webpack_require__(14);
 const Chat = __webpack_require__(54);
 const Me = __webpack_require__(88);
-const User = __webpack_require__(30);
-const async = __webpack_require__(16);
+const User = __webpack_require__(29);
+const async = __webpack_require__(15);
 
 /**
  @class ChatEngine
@@ -7790,6 +7783,9 @@ module.exports = (ceConfig = {}, pnConfig = {}) => {
 
     ChatEngine.ceConfig = ceConfig;
     ChatEngine.pnConfig = pnConfig;
+
+    ChatEngine.pnConfig.heartbeatInterval = ChatEngine.pnConfig.heartbeatInterval || 30;
+    ChatEngine.pnConfig.presenceTimeout = ChatEngine.pnConfig.presenceTimeout || 60;
 
     ChatEngine.ceConfig.endpoint = ChatEngine.ceConfig.endpoint || 'https://pubsub.pubnub.com/v1/blocks/sub-key/' + ChatEngine.pnConfig.subscribeKey + '/chat-engine-server';
     ChatEngine.ceConfig.globalChannel = ChatEngine.ceConfig.globalChannel || 'chat-engine-global';
@@ -7991,7 +7987,7 @@ module.exports = (ceConfig = {}, pnConfig = {}) => {
 
         };
 
-        let complete = (chatData) => {
+        let complete = () => {
 
             ChatEngine.pubnub = new PubNub(pnConfig);
 
@@ -8034,6 +8030,17 @@ module.exports = (ceConfig = {}, pnConfig = {}) => {
                     ceConfig.globalChannel + '#' + ChatEngine.me.uuid + '#system',
                     ceConfig.globalChannel + '#' + ChatEngine.me.uuid + '#custom'
                 ];
+
+                // listen to all PubNub events for this Chat
+                ChatEngine.pubnub.addListener({
+                    presence: (payload) => {
+
+                        if (ChatEngine.chats[payload.channel]) {
+                            ChatEngine.chats[payload.channel].onPresence(payload);
+                        }
+
+                    }
+                });
 
                 ChatEngine.pubnub.subscribe({
                     channelGroups: chanGroups,
@@ -8185,7 +8192,6 @@ module.exports = (ceConfig = {}, pnConfig = {}) => {
             let internalChannel = ChatEngine.augmentChannel(args[0], args[1]);
 
             if (ChatEngine.chats[internalChannel]) {
-
                 return ChatEngine.chats[internalChannel];
             } else {
 
@@ -8243,6 +8249,12 @@ module.exports = (ceConfig = {}, pnConfig = {}) => {
 
 
 /***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(33);
+
+/***/ }),
 /* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8250,7 +8262,7 @@ module.exports = (ceConfig = {}, pnConfig = {}) => {
 
 
 var utils = __webpack_require__(0);
-var bind = __webpack_require__(10);
+var bind = __webpack_require__(9);
 var Axios = __webpack_require__(35);
 var defaults = __webpack_require__(2);
 
@@ -8285,9 +8297,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(14);
+axios.Cancel = __webpack_require__(13);
 axios.CancelToken = __webpack_require__(49);
-axios.isCancel = __webpack_require__(13);
+axios.isCancel = __webpack_require__(12);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -8447,7 +8459,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(12);
+var createError = __webpack_require__(11);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -8866,7 +8878,7 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(46);
-var isCancel = __webpack_require__(13);
+var isCancel = __webpack_require__(12);
 var defaults = __webpack_require__(2);
 
 /**
@@ -9019,7 +9031,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(14);
+var Cancel = __webpack_require__(13);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -9122,7 +9134,7 @@ module.exports = function spread(callback) {
 /* 52 */
 /***/ (function(module, exports) {
 
-module.exports = {"author":"PubNub","name":"chat-engine","version":"0.7.0","description":"ChatEngine","main":"src/index.js","scripts":{"deploy":"gulp; npm publish;","docs":"jsdoc src/index.js -c jsdoc.json"},"repository":{"type":"git","url":"git+https://github.com/pubnub/chat-engine.git"},"keywords":["pubnub","chat","sdk","realtime"],"bugs":{"url":"https://github.com/pubnub/chat-engine/issues"},"homepage":"https://github.com/pubnub/chat-engine#readme","devDependencies":{"body-parser":"^1.17.2","chai":"^3.5.0","chat-engine-typing-indicator":"0.0.x","docdash":"^0.4.0","eslint":"^4.7.1","eslint-config-airbnb":"^15.1.0","eslint-plugin-import":"^2.7.0","express":"^4.15.3","gulp":"^3.9.1","gulp-eslint":"^4.0.0","gulp-istanbul":"^1.1.2","gulp-jsdoc3":"^1.0.1","gulp-mocha":"^3.0.1","gulp-uglify":"^2.0.0","http-server":"^0.10.0","isparta":"^4.0.0","jsdoc":"^3.5.5","mocha":"^3.1.2","proxyquire":"^1.8.0","run-sequence":"^2.2.0","sinon":"^4.0.0","stats-webpack-plugin":"^0.6.1","webpack":"^3.6.0","webpack-stream":"^4.0.0"},"dependencies":{"async":"^2.1.2","axios":"^0.16.2","eventemitter2":"^2.2.1","isparta":"^4.0.0","pubnub":"^4.17.0","pubnub-functions-mock":"^0.0.2","request":"^2.82.0"}}
+module.exports = {"author":"PubNub","name":"chat-engine","version":"0.7.0","description":"ChatEngine","main":"src/index.js","scripts":{"deploy":"gulp; npm publish;","docs":"jsdoc src/index.js -c jsdoc.json"},"repository":{"type":"git","url":"git+https://github.com/pubnub/chat-engine.git"},"keywords":["pubnub","chat","sdk","realtime"],"bugs":{"url":"https://github.com/pubnub/chat-engine/issues"},"homepage":"https://github.com/pubnub/chat-engine#readme","devDependencies":{"body-parser":"^1.17.2","chai":"^3.5.0","chat-engine-typing-indicator":"0.0.x","docdash":"^0.4.0","es6-promise":"^4.1.1","eslint":"^4.7.1","eslint-config-airbnb":"^15.1.0","eslint-plugin-import":"^2.7.0","express":"^4.15.3","gulp":"^3.9.1","gulp-eslint":"^4.0.0","gulp-istanbul":"^1.1.2","gulp-jsdoc3":"^1.0.1","gulp-mocha":"^3.0.1","gulp-uglify":"^2.0.0","http-server":"^0.10.0","isparta":"^4.0.0","jsdoc":"^3.5.5","mocha":"^3.1.2","proxyquire":"^1.8.0","run-sequence":"^2.2.0","sinon":"^4.0.0","stats-webpack-plugin":"^0.6.1","uglifyjs-webpack-plugin":"^1.0.1","webpack":"^3.6.0","webpack-stream":"^4.0.0"},"dependencies":{"async":"^2.1.2","axios":"^0.16.2","eventemitter2":"^2.2.1","isparta":"^4.0.0","pubnub":"^4.17.0","pubnub-functions-mock":"^0.0.6","request":"^2.82.0"}}
 
 /***/ }),
 /* 53 */
@@ -9857,9 +9869,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const async = __webpack_require__(16);
+const async = __webpack_require__(15);
 const Emitter = __webpack_require__(5);
-const Event = __webpack_require__(24);
+const Event = __webpack_require__(23);
 const Search = __webpack_require__(60);
 
 /**
@@ -10051,49 +10063,47 @@ class Chat extends Emitter {
     onPresence(presenceEvent) {
 
         // make sure channel matches this channel
-        if (this.channel === presenceEvent.channel) {
 
-            // someone joins channel
-            if (presenceEvent.action === 'join') {
+        // someone joins channel
+        if (presenceEvent.action === 'join') {
 
-                let user = this.createUser(presenceEvent.uuid, presenceEvent.state);
+            let user = this.createUser(presenceEvent.uuid, presenceEvent.state);
 
-                /**
-                 * Fired when a {@link User} has joined the room.
-                 *
-                 * @event Chat#$"."online"."join
-                 * @param {Object} data The payload returned by the event
-                 * @param {User} data.user The {@link User} that came online
-                 * @example
-                 * chat.on('$.join', (data) => {
-                              *     console.log('User has joined the room!', data.user);
-                              * });
-                 */
+            /**
+             * Fired when a {@link User} has joined the room.
+             *
+             * @event Chat#$"."online"."join
+             * @param {Object} data The payload returned by the event
+             * @param {User} data.user The {@link User} that came online
+             * @example
+             * chat.on('$.join', (data) => {
+                          *     console.log('User has joined the room!', data.user);
+                          * });
+             */
 
-                // It's possible for PubNub to send us both a join and have the user appear in here_now
-                // Avoid firing duplicate $.online events.
-                if (!this.users[user.uuid]) {
-                    this.trigger('$.online.join', { user });
-                }
-
-            }
-
-            // someone leaves channel
-            if (presenceEvent.action === 'leave') {
-                this.userLeave(presenceEvent.uuid);
-            }
-
-            // someone timesout
-            if (presenceEvent.action === 'timeout') {
-                this.userDisconnect(presenceEvent.uuid);
-            }
-
-            // someone's state is updated
-            if (presenceEvent.action === 'state-change') {
-                this.userUpdate(presenceEvent.uuid, presenceEvent.state);
+            // It's possible for PubNub to send us both a join and have the user appear in here_now
+            // Avoid firing duplicate $.online events.
+            if (!this.users[user.uuid]) {
+                this.trigger('$.online.join', { user });
             }
 
         }
+
+        // someone leaves channel
+        if (presenceEvent.action === 'leave') {
+            this.userLeave(presenceEvent.uuid);
+        }
+
+        // someone timesout
+        if (presenceEvent.action === 'timeout') {
+            this.userDisconnect(presenceEvent.uuid);
+        }
+
+        // someone's state is updated
+        if (presenceEvent.action === 'state-change') {
+            this.userUpdate(presenceEvent.uuid, presenceEvent.state);
+        }
+
 
     }
 
@@ -10172,7 +10182,6 @@ class Chat extends Emitter {
         // Ensure that this user exists in the global list
         // so we can reference it from here out
         this.chatEngine.users[uuid] = this.chatEngine.users[uuid] || new this.chatEngine.User(uuid);
-
         this.chatEngine.users[uuid].assign(state);
 
         // trigger the join event over this chatroom
@@ -10401,8 +10410,24 @@ class Chat extends Emitter {
 
         this.connected = true;
 
-        if (this.channel !== this.chatEngine.global.channel) {
+        // add self to list of users
+        this.users[this.chatEngine.me.uuid] = this.chatEngine.me;
+
+        // trigger my own online event
+        this.trigger('$.online.join', {
+            user: this.chatEngine.me
+        });
+
+        // global channel updates are triggered manually, only get presence on custom chats
+        if (this.channel !== this.chatEngine.global.channel && this.group === 'custom') {
+
             this.getUserUpdates();
+
+            // we may miss updates, so call this again 5 seconds later
+            setTimeout(() => {
+                this.getUserUpdates();
+            }, 5000);
+
         }
 
     }
@@ -10416,11 +10441,6 @@ class Chat extends Emitter {
             includeUUIDs: true,
             includeState: true
         }, this.onHereNow.bind(this));
-
-        // listen to all PubNub events for this Chat
-        this.chatEngine.pubnub.addListener({
-            presence: this.onPresence.bind(this)
-        });
 
     }
 
@@ -10715,15 +10735,15 @@ exports.default = function (tasks, callback) {
     nextTask([]);
 };
 
-var _isArray = __webpack_require__(18);
+var _isArray = __webpack_require__(17);
 
 var _isArray2 = _interopRequireDefault(_isArray);
 
-var _noop = __webpack_require__(19);
+var _noop = __webpack_require__(18);
 
 var _noop2 = _interopRequireDefault(_noop);
 
-var _once = __webpack_require__(20);
+var _once = __webpack_require__(19);
 
 var _once2 = _interopRequireDefault(_once);
 
@@ -10731,11 +10751,11 @@ var _slice = __webpack_require__(6);
 
 var _slice2 = _interopRequireDefault(_slice);
 
-var _onlyOnce = __webpack_require__(21);
+var _onlyOnce = __webpack_require__(20);
 
 var _onlyOnce2 = _interopRequireDefault(_onlyOnce);
 
-var _wrapAsync = __webpack_require__(22);
+var _wrapAsync = __webpack_require__(21);
 
 var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
 
@@ -10813,7 +10833,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = asyncify;
 
-var _isObject = __webpack_require__(23);
+var _isObject = __webpack_require__(22);
 
 var _isObject2 = _interopRequireDefault(_isObject);
 
@@ -10991,7 +11011,7 @@ if (hasSetImmediate) {
 }
 
 exports.default = wrap(_defer);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(17).setImmediate, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(16).setImmediate, __webpack_require__(1)))
 
 /***/ }),
 /* 60 */
@@ -11302,7 +11322,7 @@ var _withoutIndex = __webpack_require__(86);
 
 var _withoutIndex2 = _interopRequireDefault(_withoutIndex);
 
-var _wrapAsync = __webpack_require__(22);
+var _wrapAsync = __webpack_require__(21);
 
 var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
 
@@ -11345,11 +11365,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = _eachOfLimit;
 
-var _noop = __webpack_require__(19);
+var _noop = __webpack_require__(18);
 
 var _noop2 = _interopRequireDefault(_noop);
 
-var _once = __webpack_require__(20);
+var _once = __webpack_require__(19);
 
 var _once2 = _interopRequireDefault(_once);
 
@@ -11357,7 +11377,7 @@ var _iterator = __webpack_require__(64);
 
 var _iterator2 = _interopRequireDefault(_iterator);
 
-var _onlyOnce = __webpack_require__(21);
+var _onlyOnce = __webpack_require__(20);
 
 var _onlyOnce2 = _interopRequireDefault(_onlyOnce);
 
@@ -11422,7 +11442,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = iterator;
 
-var _isArrayLike = __webpack_require__(25);
+var _isArrayLike = __webpack_require__(24);
 
 var _isArrayLike2 = _interopRequireDefault(_isArrayLike);
 
@@ -11479,7 +11499,7 @@ module.exports = exports['default'];
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGetTag = __webpack_require__(7),
-    isObject = __webpack_require__(23);
+    isObject = __webpack_require__(22);
 
 /** `Object#toString` result references. */
 var asyncTag = '[object AsyncFunction]',
@@ -11521,7 +11541,7 @@ module.exports = isFunction;
 /* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(26);
+var Symbol = __webpack_require__(25);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -11622,7 +11642,7 @@ module.exports = exports['default'];
 
 var arrayLikeKeys = __webpack_require__(70),
     baseKeys = __webpack_require__(81),
-    isArrayLike = __webpack_require__(25);
+    isArrayLike = __webpack_require__(24);
 
 /**
  * Creates an array of the own enumerable property names of `object`.
@@ -11665,7 +11685,7 @@ module.exports = keys;
 
 var baseTimes = __webpack_require__(71),
     isArguments = __webpack_require__(72),
-    isArray = __webpack_require__(18),
+    isArray = __webpack_require__(17),
     isBuffer = __webpack_require__(74),
     isIndex = __webpack_require__(76),
     isTypedArray = __webpack_require__(77);
@@ -11810,7 +11830,7 @@ module.exports = baseIsArguments;
 /* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(27),
+/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(26),
     stubFalse = __webpack_require__(75);
 
 /** Detect free variable `exports`. */
@@ -11941,7 +11961,7 @@ module.exports = isTypedArray;
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGetTag = __webpack_require__(7),
-    isLength = __webpack_require__(29),
+    isLength = __webpack_require__(28),
     isObjectLike = __webpack_require__(8);
 
 /** `Object#toString` result references. */
@@ -12026,7 +12046,7 @@ module.exports = baseUnary;
 /* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(28);
+/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(27);
 
 /** Detect free variable `exports`. */
 var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
@@ -12199,7 +12219,7 @@ module.exports = exports["default"];
 /* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const User = __webpack_require__(30);
+const User = __webpack_require__(29);
 
 /**
  Represents the client connection as a special {@link User} with write permissions.
