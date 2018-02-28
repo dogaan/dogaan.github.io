@@ -6,7 +6,7 @@ var ChatEnginePoll = function (chatEngine, pollDomId, pollTitle, pollOptions, po
   }
 
   var date = new Date().getTime();
-  document.getElementById(pollDomId).style.display = 'none';
+  document.getElementById(pollDomId).style.transform = 'translate(105vw)';
   document.getElementById(pollDomId).innerHTML = '';
 
   if (date > pollEndTT || date < pollStartTT) {
@@ -29,12 +29,13 @@ var ChatEnginePoll = function (chatEngine, pollDomId, pollTitle, pollOptions, po
     title = document.createElement("H3");
     title.innerText = pollTitle;
     title.id = "chat-engine-poll-title";
+    document.getElementById("message-to-send").blur();
     closeButton = document.createElement("BUTTON");
+    closeButton.id = "chat-engine-poll-close";
     closeButton.textContent = "X";
-    closeButton.addEventListener("click", function(e) {
-      document.getElementById(pollDomId).style.display = 'none';
+    title.addEventListener("click", function(e) {
+      document.getElementById(pollDomId).style.transform = 'translate(105vw)';
     }, false);
-    title.appendChild(closeButton);
     document.getElementById(pollDomId).appendChild(title);
   }
 
@@ -67,14 +68,18 @@ var ChatEnginePoll = function (chatEngine, pollDomId, pollTitle, pollOptions, po
       .append("div")
       .attr("class", "bar")
       .style("width", function (d) {
-        return (d.vote*10)+15 + "px";
+        return (d.vote*10)+15 + "%";
       })
       .text(function(d) { return d.vote });
+
+    var total = 1;
+    bars.selectAll("div")
+      .text(function(d) { total += +d.vote });
 
     bars.selectAll("div")
       .text(function(d) { return d.vote })
       .style("width", function (d) {
-        return (d.vote*10)+15 + "px";
+        return (d.vote / total)*100 + "%";
       });
 
     bars
@@ -85,7 +90,7 @@ var ChatEnginePoll = function (chatEngine, pollDomId, pollTitle, pollOptions, po
   function increment(message) {
     try{
         if (message.message.data.pollTitle.length > 0)
-            document.getElementById(pollDomId).style.display = 'block';
+            document.getElementById(pollDomId).style.transform = 'translate(0px)';
     } catch(e) {}
     message = message.message
     for (var i=0; i<data.length; i++) {
