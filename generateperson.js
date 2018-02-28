@@ -7,7 +7,7 @@ var generatePerson = function(online) {
 
         var person = {};
 
-        var names = "Vincent Porter Aiden Chavez Mike Thomas Erica Hughes Ginger Johnston Tracy Carpenter Stephen Blum Christian Kelly Monica Ward Todd Green Ian Jennings Dean Henry Peyton Mckinney".split(" ");
+        var names = "Benjamin Riaz Hecham Bhavana Madison CraigB Oz Todd Stephen Girish Annie Michael DH Jeff Cody Jordan Vinny Ben Jochen Chaitan".split(" ");
 
         var avatars = [
             'https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg',
